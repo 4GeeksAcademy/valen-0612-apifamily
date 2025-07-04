@@ -50,11 +50,17 @@ def get_one_member(member_id):
 # agregar un miembro nuevo 
 
 @app.route('/members' ,  methods=['POST'])
-def add_new_memeber():
+def add_new_member():
     data = request.get_json()
 
-    if 'first name' not in data or 'age' not in data or 'lucky_numbers' not in data:
+    if not data.get ('first_name') or  not data.get ('age') or  not data.get ('lucky_numbers'):
         return jsonify({'error':'faltan datos'}) ,400
+    
+    if 'id' not in data:
+        data ['id'] = jackson_family._generate_id()
+    
+    if 'last_name' not in data:
+         data["last_name"] = jackson_family.last_name
     
     jackson_family.add_member(data)
     return jsonify({"message": "Miembro agregado correctamente"}), 200

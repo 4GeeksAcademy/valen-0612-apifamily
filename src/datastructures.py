@@ -56,10 +56,8 @@ class FamilyStructure:
         for miembro in self._members:
             if miembro ['id'] == id:
                 pass
-            
-        else:
-              new_list.append(miembro)
-        
+            else:
+                  new_list.append(miembro)
         self._members = new_list
 
 
@@ -70,7 +68,8 @@ class FamilyStructure:
         for miembro in self._members:
             if miembro['id'] == id:
                 return miembro
-            return None # Si no lo encuentra, devuelve None
+            
+        return None # Si no lo encuentra, devuelve None
 
     # This method is done, it returns a list with all the family members
     def get_all_members(self):
